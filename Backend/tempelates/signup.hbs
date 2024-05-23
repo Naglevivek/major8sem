@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <!-- Bootstrap CSS via CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS for Sign Up Form */
+
+        body {
+            background-color: #f8f9fa; /* Set background color */
+            padding-top: 50px; /* Add some space at the top */
+        }
+
+        h2 {
+            text-align: center; /* Center the heading */
+            margin-bottom: 30px; /* Add space below the heading */
+        }
+
+        form {
+            max-width: 400px; /* Set maximum width for the form */
+            margin: 0 auto; /* Center the form horizontally */
+            padding: 20px; /* Add some padding */
+            background-color: #fff; /* Set background color for the form */
+            border-radius: 5px; /* Add border radius */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow */
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%; /* Set input width to 100% */
+            padding: 10px; /* Add some padding */
+            margin-bottom: 20px; /* Add space below each input */
+            border-radius: 5px; /* Add border radius */
+            border: 1px solid #ced4da; /* Add border */
+        }
+
+        button[type="submit"] {
+            width: 100%; /* Set button width to 100% */
+            padding: 10px; /* Add some padding */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Add border radius */
+            background-color: #007bff; /* Set button background color */
+            color: #fff; /* Set button text color */
+            cursor: pointer; /* Add pointer cursor on hover */
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3; /* Darken button color on hover */
+        }
+    </style>
+    <script>
+        function validateForm() {
+            var name = document.forms["signupForm"]["name"].value;
+            var email = document.forms["signupForm"]["email"].value;
+            var password = document.forms["signupForm"]["password"].value;
+            var gst = document.forms["signupForm"]["gst_in"].value;
+
+            // Validate GST Number (15 digits)
+            if (gst.length !== 15) {
+                alert("GST number must be 15 digits long.");
+                return false;
+            }
+
+            // Validate Password (at least 8 characters, one uppercase letter, one special character)
+            var passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
+            if (!passwordRegex.test(password)) {
+                alert("Password must be at least 8 characters long, contain at least one uppercase letter, and one special character.");
+                return false;
+            }
+
+            // Validate Email Format
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert("Invalid email format.");
+                return false;
+            }
+
+            return true; // Form submission allowed if all validations passed
+        }
+    </script>
+</head>
+<body>
+    <h2>Sign Up</h2>
+    <form name="signupForm" action="/signup" method="post" onsubmit="return validateForm()">
+        <input type="text" name="name" class="form-control mb-2" placeholder="Name" required>
+        <input type="email" name="email" class="form-control mb-2" placeholder="Email" required>
+        <input type="password" name="password" class="form-control mb-2" placeholder="Password" required>
+        <input type="text" name="gst_in" class="form-control mb-2" placeholder="GST IN" required>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+    </form>
+    <!-- Bootstrap JS via CDN (optional, if needed) -->
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+</body>
+</html>

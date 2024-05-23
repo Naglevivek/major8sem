@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS via CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link to your custom CSS file -->
+    <link rel="stylesheet" href="./login.css">
+    <title>Login</title>
+</head>
+<style>
+    /* login.css */
+
+/* Center the container vertically and horizontally */
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the heading */
+h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Style the form inputs */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #007bff; /* Highlight the input on focus */
+}
+
+/* Style the submit button */
+.btn-primary {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Darken the button on hover */
+}
+
+/* Style the link */
+a {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3; /* Darken the link on hover */
+}
+
+</style>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form name="loginForm" action="/login" method="post" onsubmit="return validateForm()">
+            <div class="form-group">
+                <input type="text" name="name" class="form-control" placeholder="Name" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" class="form-control" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <input type="text" name="secret_code" class="form-control" placeholder="Secret Code" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <a href="/signup">Don't have an account</a>
+    </div>
+
+    <!-- Bootstrap JS (optional, if needed) -->
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+
+    <script>
+        function validateForm() {
+            var name = document.forms["loginForm"]["name"].value;
+            var password = document.forms["loginForm"]["password"].value;
+            var secretCode = document.forms["loginForm"]["secret_code"].value;
+
+            // Check if name, password, and secret code are not empty
+            if (name === "" || password === "" || secretCode === "") {
+                alert("All fields are required.");
+                return false;
+            }
+
+            // You may add additional validation criteria here if needed
+
+            return true; // Form submission allowed if all validations passed
+        }
+    </script>
+</body>
+</html>
